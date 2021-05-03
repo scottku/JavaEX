@@ -6,7 +6,10 @@ public class ConsoleEx {
 	
 		//consoleOutput();
 		consoleInput();
+		
 	}
+	
+
 	
 	private static void consoleInput() {
 		// Class를 불러올 때 ctrl + shift + o 로 확인
@@ -24,6 +27,7 @@ public class ConsoleEx {
 		
 		System.out.println("당신의 이름은 " + name + " 이고 나이는 " + age + " 세 입니다.");
 		
+		// 사용 이후에는 닫아 줄 것.
 		scanner.close();
 	}
 	private static void consoleOutput() {
