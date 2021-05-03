@@ -5,7 +5,9 @@ public class OperEx {
 	public static void main(String[] args) {
 		//arithOperEx();
 		//logicOper();
-		bitOper();
+		//bitOper();
+		//bitShift();
+		conditionalOper();
 	}
 	
 	//산술 연산자
@@ -102,7 +104,40 @@ public class OperEx {
 		result = b1 | b2; //둘 중 하나만 1이어도 1로 출력
 		System.out.println("b1|b2: " + Integer.toBinaryString(result));
 		result = ~b1;
-		System.out.println("~b1: " + Integer.toBinaryString(result)); //byte로 정의했지만 비트 연산을 수행할 때는 기본 단위인 int로 변환되어 수행된다. 따라서 00000000000000000000000000001101 -> 11111111111111111111111111110010
+		System.out.println("~b1: " + Integer.toBinaryString(result)); 
+		// byte로 정의했지만 비트 연산을 수행할 때는 기본 단위인 'int'로 변환되어 수행된다. 
+		// 따라서 00000000000000000000000000001101 -> 11111111111111111111111111110010
+		
+		
+		}
+	// 비트 shift 연산자 : 비트 단위 이동
+	private static void bitShift() {
+		int data = 1;
+		System.out.println(data);
+		System.out.println("1비트 왼쪽 시프트 : " + Integer.toBinaryString(data << 1));
+		System.out.println("4비트 왼쪽 시프트 : " + Integer.toBinaryString(data << 4));
+		
+		data = 0b1000;
+		System.out.println("1비트 오른쪽 시프트 : " + Integer.toBinaryString(data>>1));
+		System.out.println("3비트 오른쪽 시프트 : " + Integer.toBinaryString(data>>3));
+		System.out.println("4비트 오른쪽 시프트 : " + Integer.toBinaryString(data >> 4));
+		System.out.println("5비트 오른쪽 시프트 : " + Integer.toBinaryString(data >> 5));
+	}
+	
+	//3항 연산자 (조건부 연산자)
+	private static void conditionalOper() {
+		int a = 10;
+		//a가 짝수라면, 짝수 출력, 짝수가 아니면 홀수 출력
+		String message;
+		
+		message = a%2==0 ? "짝수" : "홀수";
+		System.out.println(message);
+		
+		int score = 85;
+		//점수가 80점 이상이면 good, 50점 이상이면 Pass, 그 이하면 Fail
+		
+		message = score >= 80 ? "Good" : (score >= 50 ? "Pass" : "Fail");
+		System.out.println(message);
 		
 	}
 }
