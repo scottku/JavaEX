@@ -6,7 +6,9 @@ public class Types {
 		//floatTypes();
 		//booleanEX();
 		//charEX();
-		constantEX();
+		//constantEX();
+		//implicitCasting();
+		explicitCasting();
 	}
 	private static void constantEX() {
 		final float PI = 3.141592f;
@@ -92,5 +94,36 @@ public class Types {
 		System.out.println("0b1101 -> " + bin);
 		System.out.println("072 -> " + oct);
 		System.out.println("0xFF -> " + hex);
+	}
+	//암묵적 형 변환
+	//표현의 범위가 좁은 -> 범위가 넓은, 자료 유실 x, 자동으로 변환 가능
+	private static void implicitCasting() {
+		byte b = 10; //1바이트 정수형
+		System.out.println("byte = " + b);
+		int i = b; //4바이트 정수형
+		System.out.println("int = " + i);
+		long l = i; //8바이트 정수형
+		System.out.println("long = " + l);
+		
+		float f = l; //byte는 long보다 작아도 표현 범위가 넓어 괜찮음.
+		System.out.println("long -> float:" + f);
+		double d = f; //8바이트 실수형
+		System.out.println("float -> double:" + d);
+	}
+	//명시적 형 변환 -> 표현 범위가 넓은 자료형에서 좁은 자료형으로
+	//자료 유실 가능성 농후
+	private static void explicitCasting() {
+		byte b;
+		int i=2021;
+		float f =123.456f;
+		
+		System.out.println(Integer.toBinaryString(i));
+		
+		b = (byte)i; //강제 casting 필요
+		
+		System.out.println("int " + i + " -> byte " + b);
+		
+		i = (int)f;
+		System.out.println("float " + f + " -> int" + i);
 	}
 }
