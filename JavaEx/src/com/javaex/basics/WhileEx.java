@@ -6,8 +6,23 @@ public class WhileEx {
 		//whileEx();
 		//whileEx2();
 		//whileInfinity();
-		whileDo();
+		//whileDo();
+		forLoopEx();
 	}
+	private static void forLoopEx() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("단을 입력하세요 : ");
+		
+		int dan = scanner.nextInt();
+		
+		for(int num = 1 ; num <= 9 ; num++) {
+			System.out.println(dan +" x "+ num +" = " + dan*num);
+		}
+		
+		
+		scanner.close();
+	}
+	
 	private static void whileDo() {
 		
 		int num = 0;
