@@ -3,9 +3,35 @@ package com.javaex.basics.reftypes;
 public class StringEx {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		stringBasic();
+		
+		//stringBasic();
+		stringFormatEx();
 	}
+	private static void stringFormatEx()	{
+		//형식화된 문자열
+		// %s(문자열), %d(정수), %f(실수), %n(줄 띄우기), %%(%)
+		// ~개의 ~ 중에서 ~개를 먹었다. -> 문자열 생성
+		String food = "사과";
+		int total = 10;
+		int eat = 3;
+		
+		System.out.println(total + "개의 " + food + " 중에서 " + eat + "개를 먹었다."); //-> 너무 쓰기 불편
+		System.out.printf("%d개의 %s 중에서 %d개를 먹었다.%n",total,food,eat);
+		
+		// %d, %f 등의 포맷 문자에는 부가 정보를 담을 수 있다.
+		float rate = 1.234f;
+		// 현재 이자율은 ~% 입니다.
+		
+		System.out.printf("현재 이자율은 %f%% 입니다.%n",rate);
+		System.out.printf("현재 이자율은 %.2f%% 입니다.%n", rate); //소수점 둘째 자리 까지만 표시 가능.
+		
+		//포맷 형식은 String.format 메서드를 이용, 문자열 생성 시 활용 가능
+		String fmt = "%d개의 %s 중에서 %d개를 먹었다.%n"; // 포멧을 미리 만들어 둔 후,
+		String result = String.format(fmt, 5, "바나나", 2); // 데이터를 연결하여 필요한 문자 생성 가능 ★
+		System.out.println(result);
+		
+	}
+	
 	
 	private static void stringBasic() {
 		// 문자열 선언
