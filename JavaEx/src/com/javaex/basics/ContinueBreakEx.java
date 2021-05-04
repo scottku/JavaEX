@@ -6,8 +6,24 @@ public class ContinueBreakEx {
 		//continueEx();
 		//guguDanFor();
 		//guguDanWhile();
-		breakEx();
+		//breakEx();
+		starEx();
 	}
+	private static void starEx() {
+		char s = '*';
+		int i = 1;
+		int j = 1;
+		while (i<=5) {
+			while (j<=i) {
+				System.out.print(s);
+				j++;
+			}
+			System.out.println();
+			i++;
+			j = 1;
+		}
+	}
+	
 	private static void breakEx() {
 		//6과 14로 동시에 나누어 떨어지는 수를 찾아보자
 		//루프를 어디까지 돌려야 할 지 알기 힘들기 때문에 while문이 적합
@@ -23,7 +39,7 @@ public class ContinueBreakEx {
 	}
 	
 	private static void guguDanWhile() {
-		int i = 1;
+		int i = 2;
 		int j = 1;
 		while (i<10) {
 			while (j<10) {
