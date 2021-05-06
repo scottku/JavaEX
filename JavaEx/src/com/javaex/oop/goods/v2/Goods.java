@@ -30,3 +30,6 @@ public class Goods {
 		System.out.println("가격 : " + price);
 	}
 }
+// 모든 클래스에는 반드시 하나 이상의 생성자가 있어야 함.
+// 사용자가 생성자를 아예 만들지 않았다 -> Java compiler가 기본 생성자를 추가해준다.
+// 사용자가 생성자를 정의했다 -> Java compiler가 기본 생성자를 추가하지 않는다.
