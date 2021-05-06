@@ -11,7 +11,7 @@ public class PointApp {
 		
 		p2.draw();
 		
-		// 오버로딩된 매세드 호출
+		// 오버로딩된 매서드 호출
 		p1.draw(true);
 		p1.draw(false);
 		
