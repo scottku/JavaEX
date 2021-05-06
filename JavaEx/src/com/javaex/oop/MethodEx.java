@@ -8,6 +8,12 @@ public class MethodEx {
 		System.out.println("4 + 5 = " + getSum(4,5));
 		printDivide(7,3);
 		printDivide(7,0); // 0으로 나누면 에러!
+		
+		System.out.println(getSumArr(new double[] { 1,2,3,4,5,6,7,8,9,10}));
+		
+		System.out.println(getSum(1,2,3,4,5,6,7,8,9,10));
+		
+		printSum("합계: ", 1,2,3,4,5,6,7,8,9); // 첫번째는 고정 인수, 뒤쪽은 가변 인수
 	}
 	
 	// 입력이 없고, 반환이 없는 메서드 -> void로 return type 막아줌.
@@ -34,4 +40,33 @@ public class MethodEx {
 		}
 		System.out.printf("%d / %d = %d%n" , num1, num2, num1/num2);
 	}
+	
+	// 매개변수로 배열을 전달 ->
+	private static double getSumArr(double[] values) {
+		// 전달받은 배열의 요소값을 합산 반환
+		double total = 0;
+		for(double value: values) {
+			total += value;
+		}
+		
+		return total;
+	}
+	
+	// 가변 인수 : ... -> 배열로 변환되어 전달 -> 정해지지 않은 개수의 매개변수
+	private static double getSum(double ... values) {
+		/*double total = 0;
+		
+		for (double value : values) {
+			total += value;
+		}
+		return total; */
+		return getSumArr(values);
+	}
+	
+	// 고정 인수, 가변 인수는 같이 쓸 수는 있음
+	// 고정 인수 먼저 선언 후 가변 인수를 선언해야 하는 제약 조건 존재
+	private static void printSum(String message, double ... values) {
+		System.out.println(message + ", " + getSum(values));
+	}
+
 }
