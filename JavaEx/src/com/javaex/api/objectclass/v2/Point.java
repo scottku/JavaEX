@@ -1,9 +1,7 @@
-package com.javaex.api.objectclass.v1;
+package com.javaex.api.objectclass.v2;
 
-
-// Object 클래스의 기본 메서드들
-// 특별히 상속받지 않아도 java.lang.Object를 상속받음
-// java.lang.Object -> 자바 객체의 최상위 클래스
+// v2
+// 두 객체 값의 비교 -> equals 메서드 정의
 public class Point {
 	private int x;
 	private int y;
@@ -19,6 +17,16 @@ public class Point {
 	@Override
 	public String toString() {
 		return String.format("Point(%d, %d)",x,y);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Point) {
+			// 캐스팅
+			Point other = (Point)obj;
+			return x==other.x && y==other.y;
+		}
+		return super.equals(obj);
 	}
 	
 	
