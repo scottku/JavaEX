@@ -22,7 +22,7 @@ public class Scoreboard implements Cloneable {
 		// 2. 내부의 참조 객체를 복제하여 새로 할당
 		clone.scores = Arrays.copyOf(scores, scores.length);
 		
-		return clone();
+		return clone;
 	}
 
 
