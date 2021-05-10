@@ -104,7 +104,7 @@ public class ArrayClassEx {
 		index = Arrays.binarySearch(str,  "Python");
 		System.out.println("Pytho의 인덱스 : " + index);
 		
-		// 사용자 정의 객체의 검색
+		// 사용자 정의 객체의 검색 ★
 		Member[] members = {
 				new Member("홍길동"), new Member("고길동"), new Member("장길산")
 		};
