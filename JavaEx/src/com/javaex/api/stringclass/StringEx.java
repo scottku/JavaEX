@@ -2,8 +2,9 @@ package com.javaex.api.stringclass;
 
 public class StringEx {
 	public static void main (String[] args) {
-		stringBasic();
-		usefulMethods();
+		//stringBasic();
+		//usefulMethods();
+		stringBufferEx();
 	}
 	
 	private static void stringBasic() {
@@ -62,6 +63,37 @@ public class StringEx {
 		// 문자열 비교: Unicode 비교
 		// 같으면 0, 앞의 것이 작으면(먼저) 음수, 크면(순서 상 뒤) 양수
 		System.out.println("ABC".compareTo("ABD"));
+		
+	}
+	// 문자열 객체 : 연결, 메서드 수행 시 매번 새 String을 반환 -> 메모리에 문제 발생 가능성
+	// StringBuffer : 버퍼(임시 저장 공간) 기반으로 작동 -> 문자열 출력 전까지는 새로운 객체 생성 x
+	private static void stringBufferEx() {
+		// 버퍼 생성
+		StringBuffer sb = new StringBuffer ("This");
+		
+		// 문자열 추가 : append
+		sb.append(" is pencil."); // 현재 문자열 가장 뒤에 해당 내용 추가
+		
+		// 문자열 삽입 : insert
+		sb.insert(7, " my ");
+		System.out.println(sb);
+		
+		// 문자열 치환 : replace
+		sb.replace(8, 11, "your");
+		System.out.println(sb);
+		
+		// 버퍼 사이즈 변경
+		sb.setLength(10); // 내부 버퍼 크기 10으로 조정
+		System.out.println(sb);
+		
+		//StringBuffer의 메서드들은 연속해서 호출 => 메서드 체이닝
+		
+		StringBuffer sb2 = new StringBuffer("This")
+				.append(" is pencil.")
+				.insert(8, "my")
+				.replace(8,10,"your ");
+		String s = sb2.toString();
+		System.out.println(s);
 		
 	}
 }
