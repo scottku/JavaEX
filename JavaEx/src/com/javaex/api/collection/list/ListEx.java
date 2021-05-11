@@ -1,6 +1,7 @@
 package com.javaex.api.collection.list;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +34,12 @@ public class ListEx {
 		System.out.println(lst);
 		
 		// TODO : 루프
+		// List, Set -> Iterator 이용
+		Iterator<String> it = lst.iterator();
+		while (it.hasNext()) {
+			String item = it.next();
+			System.out.print(item + " ");
+		} System.out.println();
 		
 		// 비우기
 		lst.clear();
