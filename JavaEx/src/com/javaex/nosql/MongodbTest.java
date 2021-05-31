@@ -15,6 +15,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.UpdateResult;
 
 public class MongodbTest {
 	static String MONGODB_IP = "127.0.0.1"; // localhost ip
@@ -29,19 +31,22 @@ public class MongodbTest {
 //		testInsertMany();
 //		testFindFirst();
 //		testFindAll();
-		testFindFilter();
+//		testFindFilter();
+//		testDelete();
+//		testUpdateOne();
+		testUpdateMany();
 	}
 	
 	private static MongoClient connect() {
 		// Mongo DB 접속
-//		MongoClient client = MongoClients.create(); -> 기본 접속
+		MongoClient client = MongoClients.create(); // -> 기본 접속
 		// 기본값 사용: ip = localhost, port = 27017
 		// MongoDB ip가 localhost가 아니고 port가 27017이 아니라면 아래와 같이.
-		MongoClient client = MongoClients.create( // 서버 정보
-				MongoClientSettings.builder()
-				.applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress(MONGODB_IP, MONGODB_PORT)))
-				).build()
-		);
+//		MongoClient client = MongoClients.create( // 서버 정보
+//				MongoClientSettings.builder()
+//				.applyToClusterSettings(builder -> builder.hosts(Arrays.asList(new ServerAddress(MONGODB_IP, MONGODB_PORT)))
+//				).build()
+//		);
 		
 		System.out.println(client);
 		return client;
@@ -153,5 +158,43 @@ public class MongodbTest {
 			System.out.println("DOC: " + doc);
 		}
 		cursor.close();
+	}
+	
+	// 삭제하기
+	private static void testDelete() {
+		// db.testCollection.delete({ 조건 })
+		// 전체 삭제: db.testCollection.delete({})
+		MongoCollection<Document> coll = getCollection(DB_NAME, COLL_NAME);
+		// Filter
+		Bson filter = Filters.eq("gender","MALE");
+		DeleteResult result = coll.deleteMany(filter);
+		System.out.println("삭제 결과:" + result);
+		System.out.println(result.getDeletedCount() + "개의 레코드 삭제");
+	}
+	
+	// 한 개 문서 업데이트 (updateOne)
+	private static void testUpdateOne() {
+		// species == 인간인 문서 1개를 업데이트
+		//	method 필드 updateOne
+		// db.testCollection.update({ 조건 }, { $set" : { 문서 } })
+		MongoCollection<Document> coll = getCollection(DB_NAME, COLL_NAME);
+		Bson filter = Filters.eq("species", "인간"); // { species : "인간" }
+		// 주의 : 업데이트시 $set 연산자를 사용해야만 update
+		Bson doc = new Document("$set", new Document("method", "updateOne"));
+		UpdateResult result = coll.updateOne(filter, doc);
+		
+		System.out.println(result.getModifiedCount()+"개 레드코 업데이트");
+	}
+	
+	// 조건 만족하는 모든 문서 업데이트
+	private static void testUpdateMany() {
+		// gender == Female인 모든 문서
+		//		method = "updateMany"
+		MongoCollection<Document> coll = getCollection(DB_NAME, COLL_NAME);
+		Bson filter = Filters.eq("gender", "FEMALE");
+		Bson doc = new Document("$set", new Document("method", "updateMany"));
+		UpdateResult result = coll.updateMany(filter, doc);
+		
+		System.out.println(result.getModifiedCount() + "개의 문서가 업데이트");
 	}
 }
